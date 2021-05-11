@@ -4,6 +4,7 @@ import 'package:mrs_adeoti/categories/welcome_screen_category.dart/welcome_all_s
 import 'package:mrs_adeoti/categories/welcome_screen_category.dart/welcome_bags_screen.dart';
 import 'package:mrs_adeoti/categories/welcome_screen_category.dart/welcome_clothing_screen.dart';
 
+import 'cart.dart';
 import 'category.dart';
 
 class WelcomeScreen extends StatefulWidget {
@@ -17,6 +18,7 @@ class _WelcomeScreenState extends State<WelcomeScreen>
   TabController tabController;
 
   String someText = "Some text";
+  var _currentIndex = 0;
 
   @override
   void initState() {
@@ -25,11 +27,22 @@ class _WelcomeScreenState extends State<WelcomeScreen>
     someText = "Some other text changed";
   }
 
+  void onTabTapped(int index) {
+    setState(() {
+      _currentIndex = index;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.blue,
+        leading: IconButton(
+          onPressed: (){
+            _drawer();
+          },
+          color: Colors.black45, icon: Icon(Icons.menu),),
+        backgroundColor: Colors.white.withOpacity(.01),
         title: Center(
           child: Column(
             children: [
@@ -49,14 +62,6 @@ class _WelcomeScreenState extends State<WelcomeScreen>
             ],
           ),
         ),
-        leading: InkWell(
-          onTap: () => Navigator.push(
-              context, MaterialPageRoute(builder: (context) => Category())),
-          child: Icon(
-            Icons.menu,
-            color: Colors.black45,
-          ),
-        ),
         actions: [
           Icon(
             Icons.search,
@@ -65,15 +70,17 @@ class _WelcomeScreenState extends State<WelcomeScreen>
         ],
         elevation: 0.0,
         bottom: TabBar(
+          indicatorColor:  Colors.black.withOpacity(.30),
           controller: tabController,
           tabs: [
-            Text('All'),
-            Text('Clothing'),
-            Text('Bags'),
-            Text('Accessories'),
+            Text('All',style: TextStyle(color:Colors.black45),),
+            Text('Clothing',style: TextStyle(color:Colors.black45),),
+            Text('Bags',style: TextStyle(color:Colors.black45),),
+            Text('Accessories',style: TextStyle(color:Colors.black45,),),
             IconButton(
               icon: Icon(
                 Icons.more_horiz_outlined,
+                color: Colors.black45,
               ),
               onPressed: () {},
             ),
@@ -91,26 +98,47 @@ class _WelcomeScreenState extends State<WelcomeScreen>
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(
+        onTap: onTabTapped,
+        currentIndex: _currentIndex,
+        selectedItemColor: Colors.black,
         elevation: 6.0,
-        backgroundColor: Colors.white,
+        backgroundColor: Colors.white.withOpacity(.10),
         items: [
           BottomNavigationBarItem(
-            icon: Icon(
-              Icons.home_outlined,
+            icon: IconButton(
+              onPressed: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => WelcomeScreen()));
+              },
+              icon: Icon(
+                Icons.home_outlined,
+              ),
               color: Colors.black54,
             ),
             label: 'Home',
           ),
           BottomNavigationBarItem(
-            icon: Icon(
-              Icons.category,
+            icon: IconButton(
+              onPressed: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => Category()));
+              },
+              icon: Icon(
+                Icons.category,
+              ),
               color: Colors.black54,
             ),
             label: 'Category',
           ),
           BottomNavigationBarItem(
-            icon: Icon(
-              Icons.shopping_cart_outlined,
+            icon: IconButton(
+              onPressed: () {
+                Navigator.push(
+                    context, MaterialPageRoute(builder: (context) => MyCart(name: "noName",image: 'images/xyz.jpg',price:'\$4,0000' ,)));
+              },
+              icon: Icon(
+                Icons.shopping_cart_outlined,
+              ),
               color: Colors.black54,
             ),
             label: 'Cart',
@@ -132,5 +160,12 @@ class _WelcomeScreenState extends State<WelcomeScreen>
         ],
       ),
     );
+  }
+  Widget _drawer(){
+    return Drawer(
+      elevation: 6.0,
+      child: Row(children:[
+      Text(''),
+    ],),);
   }
 }

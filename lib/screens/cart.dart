@@ -1,31 +1,102 @@
 import 'package:flutter/material.dart';
+import 'package:mrs_adeoti/screens/payments_screen/add_card_details.dart';
+import 'package:mrs_adeoti/screens/payments_screen/payment_method.dart';
 
 class MyCart extends StatelessWidget {
+  var name;
+  var description;
+  var image;
+  var price;
+  MyCart({
+    this.name,
+    this.description,
+    this.image,
+    this.price,
+  });
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
       body: SafeArea(
         child: Column(
+          // mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            Icon(
-              Icons.arrow_back,
+            SizedBox(height:20,),
+            Container(
+              alignment: Alignment.centerLeft,
+              child: IconButton(
+                onPressed: () => Navigator.pop(context),
+                icon: Icon(Icons.arrow_back,size: 34,key: key,),
+              ),
             ),
-            Text('My Cart'),
-            ListTile(
-              onTap: () {},
-              leading: Text('assetName'),
-              title: Text('data'),
-              trailing: Image.asset('name'),
+            SizedBox(height:20,),
+            Container(
+              margin: EdgeInsets.all(10.0),
+              alignment: Alignment.centerLeft,
+              child: Text(
+                'My Cart',
+                style: TextStyle(
+                  fontSize: 24,
+                ),
+              ),
             ),
-             Container(
-              width: MediaQuery.of(context).size.width * 2.7 / 4,
+            SizedBox(height:40,),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(18.0, 8.0, 18.0, 0.0),
+              child: Container(
+                decoration: BoxDecoration(
+                  color: Colors.grey.withOpacity(0.2),
+                  shape: BoxShape.rectangle,
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: ListTile(
+                  onTap: () {},
+                  title: Text('$name'),
+                  subtitle: Text('N3500'),
+                  trailing: Image.asset(
+                    image,
+                    width: 60,
+                    fit: BoxFit.cover,
+                  ),
+                ),
+              ),
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(18.0, 0.0, 18.0, 0.0),
+              child: Container(
+                decoration: BoxDecoration(
+                  color: Colors.grey.withOpacity(0.2),
+                  shape: BoxShape.rectangle,
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: ListTile(
+                  onTap: () {},
+                  title: Text('$name'),
+                  subtitle: Text('N3500'),
+                  trailing: Image.asset(
+                    image,
+                    width: 60,
+                    fit: BoxFit.cover,
+                  ),
+                ),
+              ),
+            ),
+            SizedBox(
+              height: 30,
+            ),
+            Container(
+              width: MediaQuery.of(context).size.width * 2.7 / 8,
               decoration: BoxDecoration(
                   color: Colors.blue,
                   shape: BoxShape.rectangle,
                   borderRadius: BorderRadius.circular(20)),
               child: TextButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context)=>CardNumber()));
+                },
                 child: Text(
                   'BUY NOW',
                   style: TextStyle(
@@ -35,14 +106,20 @@ class MyCart extends StatelessWidget {
                 ),
               ),
             ),
+            SizedBox(
+              height: 30,
+            ),
             Container(
-              width: MediaQuery.of(context).size.width * 2.7 / 4,
+              width: MediaQuery.of(context).size.width * 2.7 / 8,
               decoration: BoxDecoration(
                   color: Colors.blue,
                   shape: BoxShape.rectangle,
                   borderRadius: BorderRadius.circular(20)),
               child: TextButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => PaymentMethods()));
+                },
                 child: Text(
                   'Add Card',
                   style: TextStyle(

@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:mrs_adeoti/categories/all_screen.dart';
 import 'package:mrs_adeoti/categories/men.dart';
 import 'package:mrs_adeoti/categories/women.dart';
+import 'package:mrs_adeoti/screens/welcome_screen.dart';
+
+import 'cart.dart';
 
 class Category extends StatefulWidget {
   @override
@@ -11,8 +14,8 @@ class Category extends StatefulWidget {
 class _CategoryState extends State<Category>
     with SingleTickerProviderStateMixin {
   TabController tabController;
-
   String someText = "Some text";
+  var _currentIndex = 0;
 
   @override
   void initState() {
@@ -21,29 +24,42 @@ class _CategoryState extends State<Category>
     someText = "Some other text changed";
   }
 
+  void onTabTapped(int index) {
+    setState(() {
+      _currentIndex = index;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: Colors.white,
       appBar: AppBar(
-        backgroundColor: Colors.blue,
+        backgroundColor: Colors.white.withOpacity(0.80),
+        leading: IconButton(
+          onPressed: ()=>Navigator.pop(context),
+          color: Colors.black45, icon: Icon(Icons.arrow_back_outlined),),
         title: Center(
             child: Text(
           'Categories',
           style: TextStyle(
-            color: Colors.black54,
+            color: Colors.black45,
           ),
         )),
         actions: [
           Padding(
-            padding: const EdgeInsets.fromLTRB(8.0, 8.0, 22.0, 8.0),
+            padding: const EdgeInsets.fromLTRB(8.0, 8.0, 22.0, 8.0,),
             child: Icon(
               Icons.search,
               size: 25,
+              color:Colors.black45
             ),
           ),
         ],
         bottom: TabBar(
+          labelColor: Colors.blueAccent,
+          unselectedLabelColor: Colors.black45,
+          indicatorColor:  Colors.black.withOpacity(.30),
           controller: tabController,
           tabs: [
             Text('All'),
@@ -61,26 +77,47 @@ class _CategoryState extends State<Category>
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(
+        onTap: onTabTapped,
+        currentIndex: _currentIndex,
+        selectedItemColor: Colors.black,
         elevation: 6.0,
-        backgroundColor: Colors.white,
+        backgroundColor: Colors.white.withOpacity(.10),
         items: [
           BottomNavigationBarItem(
-            icon: Icon(
-              Icons.home_outlined,
+            icon: IconButton(
+              onPressed: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => WelcomeScreen()));
+              },
+              icon: Icon(
+                Icons.home_outlined,
+              ),
               color: Colors.black54,
             ),
             label: 'Home',
           ),
           BottomNavigationBarItem(
-            icon: Icon(
-              Icons.category,
+            icon: IconButton(
+              onPressed: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => Category()));
+              },
+              icon: Icon(
+                Icons.category,
+              ),
               color: Colors.black54,
             ),
             label: 'Category',
           ),
           BottomNavigationBarItem(
-            icon: Icon(
-              Icons.shopping_cart_outlined,
+            icon: IconButton(
+              onPressed: () {
+                Navigator.push(
+                    context, MaterialPageRoute(builder: (context) => MyCart(name: "noName",image: 'images/xyz.jpg',price:'\$4,0000' ,)));
+              },
+              icon: Icon(
+                Icons.shopping_cart_outlined,
+              ),
               color: Colors.black54,
             ),
             label: 'Cart',
