@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:mrs_adeoti/categories/welcome_screen_category.dart/welcome_accessories_screen.dart';
-import 'package:mrs_adeoti/categories/welcome_screen_category.dart/welcome_all_screen.dart';
-import 'package:mrs_adeoti/categories/welcome_screen_category.dart/welcome_bags_screen.dart';
-import 'package:mrs_adeoti/categories/welcome_screen_category.dart/welcome_clothing_screen.dart';
+import 'package:mrs_adeoti/welcome_screen_category.dart/welcome_accessories_screen.dart';
+import 'package:mrs_adeoti/welcome_screen_category.dart/welcome_all_screen.dart';
+import 'package:mrs_adeoti/welcome_screen_category.dart/welcome_bags_screen.dart';
+import 'package:mrs_adeoti/welcome_screen_category.dart/welcome_clothing_screen.dart';
 
 import 'cart.dart';
 import 'category.dart';
@@ -124,7 +124,7 @@ class _WelcomeScreenState extends State<WelcomeScreen>
                     MaterialPageRoute(builder: (context) => Category()));
               },
               icon: Icon(
-                Icons.category,
+                Icons.border_all,
               ),
               color: Colors.black54,
             ),

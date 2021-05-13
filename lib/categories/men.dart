@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mrs_adeoti/sub_category/sub_category_men.dart';
 
 class MenCategory extends StatelessWidget {
   @override
@@ -6,26 +7,94 @@ class MenCategory extends StatelessWidget {
     return Scaffold(
       body: Column(
         children: [
-          ListView(children: [],),
-          ListTile(
-            leading: Image.asset('images/abc.jpg',fit: BoxFit.cover,),
-            title: Text('Ada'),
+          Padding(
+            padding: const EdgeInsets.only(left:8.0,top: 30,bottom: 20,),
+            child: InkWell(
+              onTap: (){
+                Navigator.push(context, MaterialPageRoute(builder: (context)=>MenSubCategory()));
+              },
+              child: Container(
+                decoration: BoxDecoration(
+                  shape: BoxShape.rectangle,
+                ),
+                child: Row(
+                  children: [
+                    Image.asset('images/abc.jpg',fit: BoxFit.cover,height: 80, width: 80,),
+                    Padding(
+                      padding: const EdgeInsets.only(left:16.0,),
+                      child: Text('Clothing',style: TextStyle(color:Colors.blueAccent),),
+                    ),
+                  ],
+                ),
+              ),
+            ),
           ),
-          ListTile(
-            leading: Image.asset('images/def.jpg',fit: BoxFit.cover,),
-            title: Text('Keyboard'),
+          
+          Padding(
+            padding: const EdgeInsets.only(left:8.0,top: 20,bottom: 20,),
+            child: InkWell(
+              onTap: (){
+                Navigator.push(context, MaterialPageRoute(builder: (context)=>MenSubCategory()));
+              },
+              child: Container(
+                decoration: BoxDecoration(
+                  shape: BoxShape.rectangle,
+                ),
+                child: Row(
+                  children: [
+                    Image.asset('images/xyz.jpg',fit: BoxFit.cover,height: 80, width: 80,),
+                    Padding(
+                      padding: const EdgeInsets.only(left:16.0,),
+                      child: Text('Bags',style: TextStyle(color:Colors.blueAccent),),
+                    ),
+                  ],
+                ),
+              ),
+            ),
           ),
-          ListTile(
-            leading: Image.asset('images/ghi.jpg',fit: BoxFit.cover,),
-            title: Text('Horses'),
+          Padding(
+            padding: const EdgeInsets.only(left:8.0,top: 20,bottom: 20,),
+            child: InkWell(
+              onTap: (){
+                Navigator.push(context, MaterialPageRoute(builder: (context)=>MenSubCategory()));
+              },
+              child: Container(
+                decoration: BoxDecoration(
+                  shape: BoxShape.rectangle,
+                ),
+                child: Row(
+                  children: [
+                    Image.asset('images/xyz.jpg',fit: BoxFit.cover,height: 80, width: 80,),
+                    Padding(
+                      padding: const EdgeInsets.only(left:16.0,),
+                      child: Text('Accessories',style: TextStyle(color:Colors.blueAccent),),
+                    ),
+                  ],
+                ),
+              ),
+            ),
           ),
-          ListTile(
-            leading: Image.asset('images/jkl.jpg',fit: BoxFit.cover,),
-            title: Text('Bisi'),
-          ),
-          ListTile(
-            leading: Image.asset('images/abc.jpg',fit: BoxFit.cover,),
-            title: Text('Bola'),
+          Padding(
+            padding: const EdgeInsets.only(left:8.0,top: 20,bottom: 20,),
+            child: InkWell(
+              onTap: (){
+                Navigator.push(context, MaterialPageRoute(builder: (context)=>MenSubCategory()));
+              },
+              child: Container(
+                decoration: BoxDecoration(
+                  shape: BoxShape.rectangle,
+                ),
+                child: Row(
+                  children: [
+                    Image.asset('images/xyz.jpg',fit: BoxFit.cover,height: 80, width: 80,),
+                    Padding(
+                      padding: const EdgeInsets.only(left:16.0,),
+                      child: Text('Shoe',style: TextStyle(color:Colors.blueAccent),),
+                    ),
+                  ],
+                ),
+              ),
+            ),
           ),
         ],
       ),

@@ -7,15 +7,15 @@ class TakeOrder extends StatelessWidget {
     return Scaffold(
       body: Column(
         children: [
-          // Image Space
+          // Image Field
           Container(
             height: 350,
             width: MediaQuery.of(context).size.width,
             child:Image.asset('images/xyz.jpg',fit: BoxFit.cover,),
           ),
-          // End of Image Space
+          // End of Image Field
           SizedBox(height: 50,),
-          Text('Order received',textAlign: TextAlign.center,style: TextStyle(fontSize: 38,color: Colors.black.withOpacity(.6)),),
+          Text('Order received ',textAlign: TextAlign.center,style: TextStyle(fontSize: 38,color: Colors.black.withOpacity(.6)),),
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Text(

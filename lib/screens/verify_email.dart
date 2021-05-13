@@ -36,7 +36,7 @@ class VerifyEmail extends StatelessWidget {
                     style: TextStyle(fontSize: 18, color: Colors.black54),
                   ),
                   Text(
-                    '${email.text}',
+                    '${email.toString()}',
                     textAlign: TextAlign.center,
                     style: TextStyle(fontSize: 18, color: Colors.blueAccent),
                   ),

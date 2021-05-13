@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:mrs_adeoti/screens/payments_screen/add_card_details.dart';
-import 'package:mrs_adeoti/screens/payments_screen/payment_method.dart';
+import 'package:mrs_adeoti/payments_screen/payment_method.dart';
 
 class MyCart extends StatelessWidget {
-  var name;
-  var description;
-  var image;
-  var price;
+  final name;
+  final description;
+  final image;
+  final price;
   MyCart({
     this.name,
     this.description,
@@ -95,7 +94,7 @@ class MyCart extends StatelessWidget {
                   borderRadius: BorderRadius.circular(20)),
               child: TextButton(
                 onPressed: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context)=>CardNumber()));
+                  Navigator.push(context, MaterialPageRoute(builder: (context)=>PaymentMethods()));
                 },
                 child: Text(
                   'BUY NOW',

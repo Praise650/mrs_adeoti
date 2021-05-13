@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:mrs_adeoti/welcome_screen_category.dart/product_details.dart';
 
-import '../../product_details.dart';
-
-class ShowWelcomeBagsCategory extends StatelessWidget {
+class ShowWelcomeAllCategory extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -15,6 +14,7 @@ class ShowWelcomeBagsCategory extends StatelessWidget {
               width: MediaQuery.of(context).size.width,
               decoration: BoxDecoration(
                 shape: BoxShape.rectangle,
+                borderRadius: BorderRadius.circular(10),
               ),
               child: Image.asset('images/xyz.jpg',fit: BoxFit.cover,),
             ),
@@ -30,32 +30,32 @@ class ShowWelcomeBagsCategory extends StatelessWidget {
                 ),),),
               ],
             ),),
-          Expanded(child: _WelcomeBagsCategory()),
+          Expanded(child: _WelcomeAllCategory()),
         ],
       ),
     );
   }
 }
 
-class _WelcomeBagsCategory extends StatelessWidget {
+class _WelcomeAllCategory extends StatelessWidget {
   var productList = [
     {
-      "name": "Blazer",
+      "name": "Blue Cufflinks",
       "picture": "images/abc.jpg",
       "price": 3500,
     },
     {
-      "name": "Red Dress",
+      "name": "Vintage Shirt",
       "picture": "images/def.jpg",
       "price": 70,
     },
     {
-      "name": "Hills",
+      "name": "Tie",
       "picture": "images/ghi.jpg",
       "price": 85,
     },
     {
-      "name": "Pants",
+      "name": "Diamond Ring",
       "picture": "images/jkl.jpg",
       "price": 872,
     },

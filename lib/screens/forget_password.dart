@@ -7,12 +7,8 @@ class ForgotPassword extends StatefulWidget {
 }
 
 class _ForgotPasswordState extends State<ForgotPassword> {
-  TextEditingController emailController = TextEditingController();
-  @override
-  void dispose(){
-    emailController.dispose();
-    super.dispose();
-  }
+  final GlobalKey<FormState> _globalKey = GlobalKey<FormState>();
+  String emailController;
 
   @override
   Widget build(BuildContext context) {
@@ -47,26 +43,39 @@ class _ForgotPasswordState extends State<ForgotPassword> {
             ),
             Padding(
               padding: const EdgeInsets.fromLTRB(16.0,8.0,16.0,8.0),
-              child: Container(
-                width: MediaQuery.of(context).size.width * 2.7 / 4,
-                child: TextFormField(
-                  controller: emailController,
-                  textAlign: TextAlign.center,
-                  decoration: InputDecoration(
-                    filled: true,
-                    fillColor: Colors.grey.withOpacity(0.20),
-                    hintText: 'example@gmail.com',
-                    enabledBorder: OutlineInputBorder(
-                      borderSide: BorderSide(
-                        width: 0.0,
-                        style: BorderStyle.none),
-                      borderRadius: BorderRadius.circular(20),
+              child: Form(
+                key: _globalKey,
+                              child: Container(
+                  width: MediaQuery.of(context).size.width * 2.7 / 4,
+                  child: TextFormField(
+                    keyboardType: TextInputType.emailAddress,
+                          maxLines: 1,
+                    textAlign: TextAlign.center,
+                    decoration: InputDecoration(
+                      filled: true,
+                      fillColor: Colors.grey.withOpacity(0.20),
+                      hintText: 'example@gmail.com',
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                          width: 0.0,
+                          style: BorderStyle.none),
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(20.0)),
+                        borderSide: BorderSide(width: 0.0,
+                        style: BorderStyle.none,),
+                ),
                     ),
-                    focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(20.0)),
-                      borderSide: BorderSide(width: 0.0,
-                      style: BorderStyle.none,),
-              ),
+                    validator: (String value){ 
+                              if(value.isEmpty || !value.contains('@') || !value.contains('.com')){
+                                return '*Enter a valid email';
+                              }
+                              return null;
+                              },
+                              onSaved: (String value){
+                                emailController = value;
+                              },
                   ),
                 ),
               ),
@@ -86,6 +95,11 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                 ),
                 child: TextButton(
                   onPressed: () {
+                    // validates form details
+                if(!_globalKey.currentState.validate()){
+                  return;
+                }
+                _globalKey.currentState.save();
                     Navigator.push(context,
                         MaterialPageRoute(builder: (context) => VerifyEmail(emailController)));
                   },

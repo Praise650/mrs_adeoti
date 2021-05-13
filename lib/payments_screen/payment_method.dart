@@ -1,6 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:mrs_adeoti/payments_screen/shipping_details.dart';
 
-class PaymentMethods extends StatelessWidget {
+class PaymentMethods extends StatefulWidget {
+  @override
+  _PaymentMethodsState createState() => _PaymentMethodsState();
+}
+
+class _PaymentMethodsState extends State<PaymentMethods> {
+  String payment='';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -39,7 +46,12 @@ class PaymentMethods extends StatelessWidget {
                     height: 80,
                     width: 80,
                   ),
-                  Radio(value: false, groupValue: null, onChanged: null)
+                  Radio(value: 'paypal', groupValue: payment, onChanged: (val)async{
+                    setState(() {
+                          payment = val;
+                        });
+                        await Navigator.push(context, MaterialPageRoute(builder: (context)=>Shipping()));
+                  })
                 ],
               ),
             ),
@@ -62,7 +74,12 @@ class PaymentMethods extends StatelessWidget {
                     height: 80,
                     width: 80,
                   ),
-                  Radio(value: false, groupValue: null, onChanged: null)
+                  Radio(value: 'visa', groupValue: payment, onChanged: (val)async{
+                    setState(() {
+                          payment = val;
+                        });
+                        await Navigator.push(context, MaterialPageRoute(builder: (context)=>Shipping()));
+                  })
                 ],
               ),
             ),
@@ -88,7 +105,12 @@ class PaymentMethods extends StatelessWidget {
                         height: 80,
                         width: 80,
                       ),
-                      Radio(value: true, groupValue: null, onChanged: null)
+                      Radio(value: 'masterCard', groupValue: payment, onChanged: (val)async {
+                        setState(() {
+                          payment = val;
+                        });
+                        await Navigator.push(context, MaterialPageRoute(builder: (context)=>Shipping()));
+                      })
                     ],
                   ),
                 ),

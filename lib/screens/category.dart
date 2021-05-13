@@ -103,7 +103,7 @@ class _CategoryState extends State<Category>
                     MaterialPageRoute(builder: (context) => Category()));
               },
               icon: Icon(
-                Icons.category,
+                Icons.border_all,
               ),
               color: Colors.black54,
             ),

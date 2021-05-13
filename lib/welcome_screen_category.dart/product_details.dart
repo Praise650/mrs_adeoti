@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:mrs_adeoti/payments_screen/payment_method.dart';
 import 'package:mrs_adeoti/screens/cart.dart';
-import 'package:mrs_adeoti/screens/payments_screen/payment_method.dart';
 
 class Details extends StatefulWidget {
   final name;

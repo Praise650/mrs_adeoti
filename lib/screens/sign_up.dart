@@ -12,11 +12,12 @@ class SignUpScreen extends StatefulWidget {
 }
 
 class _SignUpScreenState extends State<SignUpScreen> {
-  TextEditingController nameController = TextEditingController();
-  TextEditingController emailController = TextEditingController();
-  TextEditingController paswordController = TextEditingController();
-  TextEditingController confirmPaswordController = TextEditingController();
-  final _formKey = GlobalKey<FormState>();
+  var pass;
+  String nameController;
+  String emailController;
+  String passwordController;
+  String confirmPasswordController;
+  final GlobalKey<FormState> _globalKey = GlobalKey<FormState>();
   bool valuefirst = false;
   bool _isHidden = true;
   void _togglePasswordView() {
@@ -24,6 +25,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
       _isHidden = !_isHidden;
     });
   }
+
   void _togglePasswordsView() {
     setState(() {
       _isHidden = !_isHidden;
@@ -45,7 +47,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     heightFactor: .5,
                     alignment: Alignment.bottomCenter,
                     child: Container(
-                      height: 390,
+                      height: 400,
                       width: MediaQuery.of(context).size.width * 5 / 5,
                       decoration: BoxDecoration(
                         shape: BoxShape.circle,
@@ -54,7 +56,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     ),
                   ),
                   Positioned(
-                    top: 120,
+                    top: 130,
                     left: 130,
                     child: Container(
                       alignment: Alignment.bottomCenter,
@@ -68,7 +70,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 ],
               ),
               Container(
-                margin: const EdgeInsets.fromLTRB(20.0, 65.0, 20.0, 8.0),
+                margin: const EdgeInsets.fromLTRB(20.0, 60.0, 20.0, 8.0),
                 alignment: Alignment.centerLeft,
                 child: Text(
                   'Sign Up',
@@ -81,49 +83,62 @@ class _SignUpScreenState extends State<SignUpScreen> {
               SizedBox(
                 height: 5,
               ),
-              Form(
-                key: _formKey,
-                child: Padding(
-                  padding: const EdgeInsets.fromLTRB(25.0, 8.0, 25.0, 0.0),
-                  child: Align(
-                    alignment: Alignment.center,
+       //-----------------Text Input field Begins here------------------------
+              Padding(
+                padding: const EdgeInsets.fromLTRB(25.0, 8.0, 25.0, 0.0),
+                child: Align(
+                  alignment: Alignment.center,
+                  child: Form(
+                    key: _globalKey,
                     child: Column(
                       children: [
                         TextFormField(
+                          keyboardType: TextInputType.name,
+                          maxLines: 1,
                           decoration: InputDecoration(
                             hintText: 'Enter name',
                             hintStyle: TextStyle(
                               fontSize: 14,
                             ),
                           ),
-                          validator: (text) {
-                            if (text == null || text.isEmpty) {
-                              return 'Text is empty';
+                          validator: (String value){ 
+                            if(value.isEmpty){
+                              return '*Name is Required';
                             }
                             return null;
-                          },
+                            },
+                            onSaved: (String value){
+                              nameController = value;
+                            },
                         ),
                         SizedBox(
-                          height: 10,
+                          height: 8,
                         ),
                         TextFormField(
+                          keyboardType: TextInputType.emailAddress,
+                          maxLines: 1,
                           decoration: InputDecoration(
                             hintText: 'Email \t \t \t example@email.com',
                             hintStyle: TextStyle(
                               fontSize: 14,
                             ),
                           ),
-                          validator: (text) {
-                            if (text == null || text.isEmpty) {
-                              return 'Text is empty';
+                          validator: (String value){ 
+                            if(value.isEmpty || !value.contains('@') || !value.contains('.com')){
+                              return '*Enter a valid email';
                             }
                             return null;
-                          },
+                            },
+                            onSaved: (String value){
+                              emailController = value;
+                            },
                         ),
                         SizedBox(
-                          height: 10,
+                          height: 8,
                         ),
                         TextFormField(
+                          keyboardType: TextInputType.visiblePassword,
+                          maxLines: 1,
                           obscureText: _isHidden,
                           decoration: InputDecoration(
                             hintText: 'Password \t \t  1234567890',
@@ -131,26 +146,36 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               fontSize: 14,
                             ),
                             suffix: InkWell(
-                                onTap: _togglePasswordView,
-                                child: Icon(
-                                  _isHidden 
-                                  ? Icons.visibility_off 
-                                  : Icons.visibility,
-                                  color: Colors.grey.withOpacity(0.6),
+                              onTap: _togglePasswordView,
+                              child: Icon(
+                                _isHidden
+                                    ? Icons.visibility_off
+                                    : Icons.visibility,
+                                color: Colors.grey.withOpacity(0.6),
                               ),
+                            ),
                           ),
-                          ),
-                          validator: (text) {
-                            if (text == null || text.isEmpty) {
-                              return 'Text is empty';
+                          validator: (String value){ 
+                            pass = value;
+                            if(value.isEmpty || value == null){return '*Password is Required';
+                            } else { 
+                              if((value.length <= 2)){return '*Password should be atleast 3 characters';
+                              } else {
+                                if((value.length >= 10)){return '*Password shold not be more than 9 characters long';
+                                }}}
+                                
+                            return null; 
+                            },
+                            onSaved: (String value){
+                              passwordController = value;
                             }
-                            return null;
-                          },
                         ),
                         SizedBox(
-                          height: 10,
+                          height: 8,
                         ),
                         TextFormField(
+                          keyboardType: TextInputType.visiblePassword,
+                          maxLines: 1,
                           obscureText: _isHidden,
                           decoration: InputDecoration(
                             hintText: 'Confirm Password \t \t  1234567890',
@@ -158,27 +183,31 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               fontSize: 14,
                             ),
                             suffix: InkWell(
-                                onTap: _togglePasswordsView,
-                                child: Icon(
-                                  _isHidden 
-                                  ? Icons.visibility_off 
-                                  : Icons.visibility,
-                                  color: Colors.grey.withOpacity(0.6),
+                              onTap: _togglePasswordsView,
+                              child: Icon(
+                                _isHidden
+                                    ? Icons.visibility_off
+                                    : Icons.visibility,
+                                color: Colors.grey.withOpacity(0.6),
                               ),
+                            ),
                           ),
-                          ),
-                          validator: (text) {
-                            if (text == null || text.isEmpty) {
-                              return 'Text is empty';
-                            }
-                            return null;
-                          },
+                          validator: (String value){ 
+                            if(value.isEmpty || (value != pass)){
+                              return '*Password does not match';
+                            } 
+                            return null; 
+                            },
+                            onSaved: (String value){
+                              confirmPasswordController = value;
+                            },
                         ),
                       ],
                     ),
                   ),
                 ),
               ),
+              //-----------------Text Input field Ends here------------------------
               Padding(
                 padding: const EdgeInsets.fromLTRB(18.5, 0.0, 0.0, 2.0),
                 child: Row(
@@ -197,20 +226,28 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 ),
               ),
               SizedBox(
-                height: 10,
+                height: 8,
               ),
-              TextButton(
-                onPressed: () => Navigator.pushReplacement(context,
-                    MaterialPageRoute(builder: (context) => WelcomeScreen())),
-                child: Container(
-                  alignment: Alignment.center,
-                  height: 40,
-                  width: MediaQuery.of(context).size.width * 1.6 / 4,
-                  decoration: BoxDecoration(
-                    color: Colors.blueAccent,
-                    shape: BoxShape.rectangle,
-                    borderRadius: BorderRadius.circular(30),
-                  ),
+              Container(
+                alignment: Alignment.center,
+                    height: 40,
+                    width: MediaQuery.of(context).size.width * 1.6 / 4,
+                    decoration: BoxDecoration(
+                      color: Colors.blueAccent,
+                      shape: BoxShape.rectangle,
+                      borderRadius: BorderRadius.circular(30),
+                    ),
+                child: TextButton(
+                  onPressed: () {
+                  // validates form details
+                  if(!_globalKey.currentState.validate()){
+                    return;
+                  }
+                  _globalKey.currentState.save();
+                  //Navigates to main screen  which is th  welcome screen
+                  Navigator.pushReplacement(context,
+                      MaterialPageRoute(builder: (context) => WelcomeScreen()));
+                },
                   child: Text(
                     'Sign Up',
                     style: TextStyle(
@@ -219,53 +256,53 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   ),
                 ),
               ),
+               SizedBox(
+              height: 20,
+            ),
               Padding(
-                padding: const EdgeInsets.fromLTRB(8.0, 6.0, 8.0, 0.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    RichText(
-                      text: TextSpan(
-                        text: "Already have an account?",
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 13,
-                        ),
-                        children: <TextSpan>[
-                          TextSpan(
-                            text: ' Sign In',
-                            recognizer: TapGestureRecognizer()
-                              ..onTap = () async{
-                                 if (_formKey.currentState.validate()) {
-                                  // TODO submit
-                                }
-                                await Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => SignInScreen()));
-                              },
+                padding: const EdgeInsets.only(left:12.0,right: 12.0,),
+                child: Align(
+                  alignment: Alignment.bottomCenter,
+                                  child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        RichText(
+                          text: TextSpan(
+                            text: "Already have an account?",
                             style: TextStyle(
-                              color: Colors.blueAccent,
+                              color: Colors.black,
+                              fontSize: 13,
+                            ),
+                            children: <TextSpan>[
+                              TextSpan(
+                                text: ' Sign In',
+                                recognizer: TapGestureRecognizer()
+                                  ..onTap = ()  {
+                  Navigator.push(context, MaterialPageRoute(builder: (context)=>SignInScreen()));
+                                  },
+                                style: TextStyle(
+                                  color: Colors.blueAccent,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        TextButton(
+                          onPressed: () {
+                            Navigator.pushReplacement(
+                                context,
+                                MaterialPageRoute(
+                  builder: (context) => ForgotPassword()));
+                          },
+                          child: Text(
+                            'Forgot Password?',
+                            style: TextStyle(
+                              color: Colors.black54,
                             ),
                           ),
-                        ],
-                      ),
-                    ),
-                    TextButton(
-                      onPressed: () {
-                        Navigator.pushReplacement(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => ForgotPassword()));
-                      },
-                      child: Text(
-                        'Forgot Password?',
-                        style: TextStyle(
-                          color: Colors.black54,
                         ),
-                      ),
+                      ],
                     ),
-                  ],
                 ),
               ),
             ],

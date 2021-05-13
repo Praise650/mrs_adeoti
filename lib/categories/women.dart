@@ -1,107 +1,102 @@
 import 'package:flutter/material.dart';
+import 'package:mrs_adeoti/sub_category/sub_category_women.dart';
 
 class WomenCategory extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(8.0),
+      body: Column(
+        children: [
+          Padding(
+            padding: const EdgeInsets.only(left:8.0,top: 30,bottom: 20,),
+            child: InkWell(
+              onTap: (){
+                Navigator.push(context, MaterialPageRoute(builder: (context)=>WomenSubCategory()));
+              },
               child: Container(
-                height: 100,
                 decoration: BoxDecoration(
-                  color:Colors.red,
-                  shape:BoxShape.rectangle,
-                  borderRadius:BorderRadius.circular(20)
+                  shape: BoxShape.rectangle,
                 ),
-                child: InkWell(onTap: ()=>Navigator.pop(context),
-                                  child: ListTile(
-                    contentPadding: EdgeInsets.fromLTRB(8.0,0.0,8.0,0.0),
-                    enabled: true,
-                    onTap: (){},
-                    leading: Image.asset('images/abc.jpg',fit: BoxFit.cover,width: 100,height: 100,),
-                    title: Text('Ada'),
-                  ),
+                child: Row(
+                  children: [
+                    Image.asset('images/abc.jpg',fit: BoxFit.cover,height: 80, width: 80,),
+                    Padding(
+                      padding: const EdgeInsets.only(left:16.0,),
+                      child: Text('Clothing',style: TextStyle(color:Colors.blueAccent),),
+                    ),
+                  ],
                 ),
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
+          ),
+          
+          Padding(
+            padding: const EdgeInsets.only(left:8.0,top: 20,bottom: 20,),
+            child: InkWell(
+              onTap: (){
+                Navigator.push(context, MaterialPageRoute(builder: (context)=>WomenSubCategory()));
+              },
               child: Container(
-                height: 80,
                 decoration: BoxDecoration(
-                  color:Colors.red,
-                  shape:BoxShape.rectangle,
-                  borderRadius:BorderRadius.circular(20)
+                  shape: BoxShape.rectangle,
                 ),
-                child: ListTile(
-                  contentPadding: EdgeInsets.all(8.0),
-                  enabled: true,
-                  onTap: (){},
-                  leading: Image.asset('images/def.jpg',fit: BoxFit.cover,width: 80,height: 80,),
-                  title: Text('KeyBoard'),
+                child: Row(
+                  children: [
+                    Image.asset('images/xyz.jpg',fit: BoxFit.cover,height: 80, width: 80,),
+                    Padding(
+                      padding: const EdgeInsets.only(left:16.0,),
+                      child: Text('Bags',style: TextStyle(color:Colors.blueAccent),),
+                    ),
+                  ],
                 ),
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(left:8.0,top: 20,bottom: 20,),
+            child: InkWell(
+              onTap: (){
+                Navigator.push(context, MaterialPageRoute(builder: (context)=>WomenSubCategory()));
+              },
               child: Container(
-                height: 80,
                 decoration: BoxDecoration(
-                  color:Colors.red,
-                  shape:BoxShape.rectangle,
-                  borderRadius:BorderRadius.circular(20)
+                  shape: BoxShape.rectangle,
                 ),
-                child: ListTile(
-                  contentPadding: EdgeInsets.all(8.0),
-                  enabled: true,
-                  onTap: (){},
-                  leading: Image.asset('images/ghi.jpg',fit: BoxFit.cover,width: 80,height: 80,),
-                  title: Text('Horses'),
+                child: Row(
+                  children: [
+                    Image.asset('images/xyz.jpg',fit: BoxFit.cover,height: 80, width: 80,),
+                    Padding(
+                      padding: const EdgeInsets.only(left:16.0,),
+                      child: Text('Accessories',style: TextStyle(color:Colors.blueAccent),),
+                    ),
+                  ],
                 ),
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(left:8.0,top: 20,bottom: 20,),
+            child: InkWell(
+              onTap: (){
+                Navigator.push(context, MaterialPageRoute(builder: (context)=>WomenSubCategory()));
+              },
               child: Container(
-                height: 80,
                 decoration: BoxDecoration(
-                  color:Colors.red,
-                  shape:BoxShape.rectangle,
-                  borderRadius:BorderRadius.circular(20)
+                  shape: BoxShape.rectangle,
                 ),
-                child: ListTile(
-                  contentPadding: EdgeInsets.all(8.0),
-                  enabled: true,
-                  onTap: (){},
-                  leading: Image.asset('images/jkl.jpg',fit: BoxFit.cover,width: 80,height: 80,),
-                  title: Text('Bisi'),
+                child: Row(
+                  children: [
+                    Image.asset('images/xyz.jpg',fit: BoxFit.cover,height: 80, width: 80,),
+                    Padding(
+                      padding: const EdgeInsets.only(left:16.0,),
+                      child: Text('Shoe',style: TextStyle(color:Colors.blueAccent),),
+                    ),
+                  ],
                 ),
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Container(
-                height: 80,
-                decoration: BoxDecoration(
-                  color:Colors.red,
-                  shape:BoxShape.rectangle,
-                  borderRadius:BorderRadius.circular(20)
-                ),
-                child: ListTile(
-                  contentPadding: EdgeInsets.all(8.0),
-                  enabled: true,
-                  onTap: (){},
-                  leading: Image.asset('images/abc.jpg',fit: BoxFit.cover,width: 80,height: 80,),
-                  title: Text('Horses'),
-                ),
-              ),
-            ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
