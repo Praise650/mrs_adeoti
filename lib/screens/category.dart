@@ -3,7 +3,6 @@ import 'package:mrs_adeoti/categories/all_screen.dart';
 import 'package:mrs_adeoti/categories/men.dart';
 import 'package:mrs_adeoti/categories/women.dart';
 import 'package:mrs_adeoti/screens/welcome_screen.dart';
-
 import 'cart.dart';
 
 class Category extends StatefulWidget {

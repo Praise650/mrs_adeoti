@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mrs_adeoti/payments_screen/shipping_details.dart';
+import 'add_card_details.dart';
 
 class PaymentMethods extends StatefulWidget {
   @override
@@ -50,7 +50,7 @@ class _PaymentMethodsState extends State<PaymentMethods> {
                     setState(() {
                           payment = val;
                         });
-                        await Navigator.push(context, MaterialPageRoute(builder: (context)=>Shipping()));
+                        await Navigator.push(context, MaterialPageRoute(builder: (context)=>CardNumber()));
                   })
                 ],
               ),
@@ -78,7 +78,7 @@ class _PaymentMethodsState extends State<PaymentMethods> {
                     setState(() {
                           payment = val;
                         });
-                        await Navigator.push(context, MaterialPageRoute(builder: (context)=>Shipping()));
+                        await Navigator.push(context, MaterialPageRoute(builder: (context)=>CardNumber()));
                   })
                 ],
               ),
@@ -109,7 +109,7 @@ class _PaymentMethodsState extends State<PaymentMethods> {
                         setState(() {
                           payment = val;
                         });
-                        await Navigator.push(context, MaterialPageRoute(builder: (context)=>Shipping()));
+                        await Navigator.push(context, MaterialPageRoute(builder: (context)=>CardNumber()));
                       })
                     ],
                   ),

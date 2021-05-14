@@ -32,12 +32,12 @@ class _MenSubCategoryState extends State<MenSubCategory>with SingleTickerProvide
              onPressed: (){},
             padding: EdgeInsets.all(8.0),
             icon:Icon(Icons.search_sharp,),
-          color:Colors.black,),
+          color:Colors.black45,),
           IconButton(
             onPressed: (){},
             padding: EdgeInsets.all(8.0),
             icon:Icon(Icons.shopping_cart_outlined,),
-          color:Colors.black ,),
+          color:Colors.black45 ,),
         ],
         bottom: TabBar(
           labelColor: Colors.blueAccent,

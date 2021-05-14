@@ -282,19 +282,16 @@ class _CategoryDetailsState extends State<CategoryDetails> {
                                       fontSize: 20,
                                     ),
                                   ),
-                                  Container(
-                                    decoration: BoxDecoration(color: Colors.grey,shape: BoxShape.circle),
-                                    child: IconButton(
-                                      iconSize: 24,
-                                      icon: Icon(
-                                        Icons.add,
-                                      ),
-                                      onPressed: () {
-                                        setState(() {
-                                          add++;
-                                        });
-                                      },
+                                  IconButton(
+                                    iconSize: 24,
+                                    icon: Icon(
+                                      Icons.add,
                                     ),
+                                    onPressed: () {
+                                      setState(() {
+                                        add++;
+                                      });
+                                    },
                                   ),
                                 ],
                               ),
