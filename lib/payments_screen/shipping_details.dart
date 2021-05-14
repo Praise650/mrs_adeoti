@@ -62,7 +62,7 @@ class Shipping extends StatelessWidget {
                       validator: (String value) {
                         if (value.isEmpty ||
                             !value.contains('@') ||
-                            !value.contains('.com')) {
+                            !value.contains('.')) {
                           return '*Enter a valid email';
                         }
                         return null;
